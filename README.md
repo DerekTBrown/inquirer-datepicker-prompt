@@ -1,7 +1,7 @@
 # inquirer-datepicker-prompt
 Datepicker plugin for [Inquirer.js](https://github.com/SBoudrias/Inquirer.js)
 
-![Datetime prompt](assets/screenshots/datetime-prompt.png)
+![Datetime prompt](example/datetime-prompt.png)
 
 ## Options
 __message__
