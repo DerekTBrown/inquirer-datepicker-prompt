@@ -5,9 +5,11 @@ Datepicker plugin for [Inquirer.js](https://github.com/SBoudrias/Inquirer.js)
 
 ## Options
 __message__
+
 Inherited from inquirer, message to be displayed while retrieving response.
 
 __format__
+
 An array of format specifiers for printing the date to the console.  Uses
 the [dateformat](https://www.npmjs.com/package/dateformat) mask options.
 For example:
@@ -21,6 +23,7 @@ For example:
 ```
 
 __{date,time}.{min,max}__
+
 These specify a range of valid dates/time for entry.  Users will be
 prohibited from entering a value higher.
 
@@ -41,6 +44,7 @@ date{
 ```
 
 __time.{seconds, minutes, hours}.interval__
+
 These specify the allowed interval (modulo).  For instance:
 
 ```Javascript
