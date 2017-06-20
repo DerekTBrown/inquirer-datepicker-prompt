@@ -4,7 +4,7 @@
   "description": "Datepicker prompt for inquirer.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "style": "jshint . && jscs ."
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,9 @@
     "inquirer": "^3.1.1",
     "lodash": "^4.17.4",
     "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.4"
   }
 }
