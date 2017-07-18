@@ -3,6 +3,17 @@ Datepicker plugin for [Inquirer.js](https://github.com/SBoudrias/Inquirer.js)
 
 ![Datetime prompt](example/datetime-prompt.png)
 
+## Getting started
+__install plugin__
+```javascript
+npm i inquirer-datepicker-prompt
+```
+
+__register prompt__
+```javascript
+inquirer.registerPrompt('datetime', require('inquirer-datepicker-prompt'))
+```
+
 ## Options
 __message__
 
@@ -16,10 +27,33 @@ For example:
 
 ```Javascript
 // 1/1/17 5:00 PM
-['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT']
+{
+  type: 'datetime',
+  name: 'dt',
+  message: 'When would you like a table?',
+  format: ['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT'] 
+}
 
 // 01/01/2017 05:00 PM
-['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT']
+{
+  type: 'datetime',
+  name: 'dt',
+  message: 'When would you like a table?',
+  format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT'] 
+}
+```
+
+__default__
+
+Initial value for datepicker, must be a Date object. If not specified current date and time will be used.
+Example:
+```javascript
+{
+  type: 'datetime',
+  name: 'dt',
+  message: 'When would you like a table?',
+  default: new Date('2017-01-01 12:30'),
+}
 ```
 
 __{date,time}.{min,max}__
@@ -28,19 +62,23 @@ These specify a range of valid dates/time for entry.  Users will be
 prohibited from entering a value higher.
 
 ```Javascript
-
-// Enter only 9:00AM to 5:00PM
-time{
-  min: "9:00AM",
-  max: "5:00PM"
+{
+  type: 'datetime',
+  name: 'dt',
+  message: 'When would you like a table?',
+  
+  // Enter only 1/1 to 3/1
+  date: {
+    min: "1/1/2017",
+    max: "3/1/2017"
+  },
+  
+  // Enter only 9:00AM to 5:00PM
+  time: {
+    min: "9:00AM",
+    max: "5:00PM"
+  }
 }
-
-// Enter only 1/1 to 3/1
-date{
-  min: "1/1/2017",
-  max: "3/1/2017"
-}
-
 ```
 
 __time.{seconds, minutes, hours}.interval__
@@ -50,10 +88,14 @@ These specify the allowed interval (modulo).  For instance:
 ```Javascript
 
 // Minutes can only be entered in intervals of 15 minutes
-time{
-  minutes: {
-    interval: 15
+{
+  type: 'datetime',
+  name: 'dt',
+  message: 'When would you like a table?',
+  time: {
+    minutes: {
+      interval: 15
+    }
   }
 }
-
 ```
