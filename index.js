@@ -33,7 +33,6 @@ function Prompt() {
   // Set Defaults
   this.opt = _.cloneDeep(this.opt);
   _.defaultsDeep(this.opt, {
-    format: ['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT'],
     date: {
       max: null,
       min: null
@@ -53,6 +52,11 @@ function Prompt() {
       }
     }
   });
+
+  // Set Default Format
+  if(_.isNull(this.opt.format) || _.isUndefined(this.opt.format)){
+    this.opt.format = ['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT'];
+  }
 
   // Parse Date Parameters
   var standardizeTime = function (date) {
