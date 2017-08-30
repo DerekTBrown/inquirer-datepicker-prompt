@@ -31,7 +31,7 @@ For example:
   type: 'datetime',
   name: 'dt',
   message: 'When would you like a table?',
-  format: ['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT'] 
+  format: ['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT']
 }
 
 // 01/01/2017 05:00 PM
@@ -39,11 +39,11 @@ For example:
   type: 'datetime',
   name: 'dt',
   message: 'When would you like a table?',
-  format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT'] 
+  format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT']
 }
 ```
 
-__default__
+__initial__
 
 Initial value for datepicker, must be a Date object. If not specified current date and time will be used.
 Example:
@@ -52,7 +52,7 @@ Example:
   type: 'datetime',
   name: 'dt',
   message: 'When would you like a table?',
-  default: new Date('2017-01-01 12:30'),
+  inital: new Date('2017-01-01 12:30'),
 }
 ```
 
@@ -66,13 +66,13 @@ prohibited from entering a value higher.
   type: 'datetime',
   name: 'dt',
   message: 'When would you like a table?',
-  
+
   // Enter only 1/1 to 3/1
   date: {
     min: "1/1/2017",
     max: "3/1/2017"
   },
-  
+
   // Enter only 9:00AM to 5:00PM
   time: {
     min: "9:00AM",

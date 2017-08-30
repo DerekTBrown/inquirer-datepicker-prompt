@@ -74,7 +74,7 @@ function Prompt() {
   this.opt.time.max = (typeof this.opt.time.max === 'string') ? standardizeTime(Date.parse(this.opt.time.max)) : null;
 
   // Determine Date for Start of Prompt
-  var startDate = this.opt.default || Date.present();
+  var startDate = this.opt.initial || Date.present();
   if (this.opt.date.min) {
     startDate = startDate.set({
       day: this.opt.date.min.getDate(),
