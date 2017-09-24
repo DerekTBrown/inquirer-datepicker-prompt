@@ -330,7 +330,7 @@ Prompt.prototype.onEnd = function() {
   });
 
   screen.render(message);
-  screen.done();;
+  screen.done();
   cliCursor.show();
   this.done(selection.date);
 };
