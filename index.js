@@ -319,11 +319,14 @@ Prompt.prototype.render = function () {
  * When user press `enter` key
  */
 Prompt.prototype.onEnd = function () {
+  var selection = this._selection;
+
+  selection.cur = -1;
   this.status = 'answered';
   this.render();
   this.screen.done();
   cliCursor.show();
-  this.done(this._selection.date);
+  this.done(selection.date);
 };
 
 /**
