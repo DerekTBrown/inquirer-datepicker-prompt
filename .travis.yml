@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '7'
+deploy:
+  provider: npm
+  email: "derek@allderek.com"
+  on:
+    tags: true
+  api_key:
+    secure: y8xbzRH/L9wlDfjt2Vid2THOcGsOiwqbam3qD/7E957cUj6w4MS1Pk0jM4zGOHCzKPg8KYkXQ1XbWtZrjIbc4R2BGrl6Kl8hhJB7XQ6GSRYf1boxta8kLrzF5Xre672tc3YQlD2VOy6oHYi9yS57KhjSBd8n97+epgalCzC+Xy4/ijzlI5s9ucb3jlPEwHDlgB+xKe2C9YJVJT+RLrmEppIhGmE5qGIbmDuKGoeA3HEwAnT7oTbHjIV+hv7vneLoBqlCXbpVt7xrCnxhM1ZKFeshA8hQs9bDu69pzOUIecGy57IctlyMBWic3KRYB+dS9Tl3mfjf9WjqFyDbtseOmOwYZ3xW9x5pyfIwL+F5AVcM8uAYcHlRj7aiZzmsrnYyjQFWFZrAsnTyO+MQuM5ZqODkdTbG8rcslbNqqa9W80IMNRVVL/FZpBxYMlgsz+l+juY45PhL2ykb3MmJbAPUL2EzB3VCfwzLXfuaIE15a+nj3An+L0otuRjlGgQRUlFcgTJbXtLEnFtNsG/h2gMDsmSNg9b9/GDjPpnLlpYTUpivmHtkAQZNs2NxQ/ZU55Gezo1+FpCPrEEq4jY399Nno6Oew89t51dSmDuGm5hRqI4YZazOllL2fyYPciBdH0nIMZcwqAkYWK+pQH8gARPzJyRQJHII2jhCIeEj0DuPxZc=
