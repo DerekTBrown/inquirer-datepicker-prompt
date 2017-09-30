@@ -54,18 +54,18 @@ function Prompt() {
   });
 
   // Set Default Format
-  if(_.isNull(this.opt.format) || _.isUndefined(this.opt.format)){
+  if (_.isNull(this.opt.format) || _.isUndefined(this.opt.format)) {
     this.opt.format = ['m', '/', 'd', '/', 'yy', ' ', 'h', ':', 'MM', ' ', 'TT'];
   }
 
   // Parse Date Parameters
-  var standardizeTime = function (date) {
+  var standardizeTime = function(date) {
     return Date.parse('1/1/2000')
-               .set({
-                 hour: date.getHours(),
-                 minute: date.getMinutes(),
-                 second: date.getSeconds()
-               });
+      .set({
+        hour: date.getHours(),
+        minute: date.getMinutes(),
+        second: date.getSeconds()
+      });
   };
 
   this.opt.date.min = (typeof this.opt.date.min === 'string') ? Date.parse(this.opt.date.min) : null;
@@ -103,11 +103,11 @@ function Prompt() {
   var opt = this.opt;
   var selection = this._selection;
 
-  var roundTo = function (num, round) {
+  var roundTo = function(num, round) {
     return Math.round(num / round) * round;
   };
 
-  var validateDate = function (datePropose) {
+  var validateDate = function(datePropose) {
     datePropose = datePropose.clone();
 
     // Validate Time
@@ -144,7 +144,7 @@ function Prompt() {
 
   this._selection.date = validateDate(this._selection.date);
 
-  _.each(this.opt.format, function (str) {
+  _.each(this.opt.format, function(str) {
     switch (str) {
       case 'd':
       case 'dd':
@@ -155,7 +155,7 @@ function Prompt() {
             selection.date = validateDate(selection.date.addDays(diff));
           },
           set: val => {
-            selection.date = validateDate(selection.date.set({day: val}));
+            selection.date = validateDate(selection.date.set({ day: val }));
           }
         });
         break;
@@ -171,7 +171,7 @@ function Prompt() {
             if (val.toString().length > 2) {
               selection.value = 0;
             }
-            selection.date = validateDate(selection.date.set({month: val - 1}));
+            selection.date = validateDate(selection.date.set({ month: val - 1 }));
           }
         });
         break;
@@ -184,7 +184,7 @@ function Prompt() {
             if (val.toString().length > 2) {
               selection.value = 0;
             }
-            selection.date = validateDate(selection.date.set({year: 2000 + val}));
+            selection.date = validateDate(selection.date.set({ year: 2000 + val }));
           }
         });
         break;
@@ -197,7 +197,7 @@ function Prompt() {
             if (val.toString().length > 4) {
               selection.value = 0;
             }
-            selection.date = validateDate(selection.date.set({year: val}));
+            selection.date = validateDate(selection.date.set({ year: val }));
           }
         });
         break;
@@ -215,9 +215,9 @@ function Prompt() {
             }
 
             if (selection.date.getHours() <= 12) {
-              selection.date = validateDate(selection.date.set({hour: val}));
+              selection.date = validateDate(selection.date.set({ hour: val }));
             } else {
-              selection.date = validateDate(selection.date.set({hour: val + 12}));
+              selection.date = validateDate(selection.date.set({ hour: val + 12 }));
             }
           }
         });
@@ -232,7 +232,7 @@ function Prompt() {
             if (val >= 60) {
               selection.value = 0;
             }
-            selection.date = validateDate(selection.date.set({minute: val}));
+            selection.date = validateDate(selection.date.set({ minute: val }));
           }
         });
         break;
@@ -240,13 +240,13 @@ function Prompt() {
       case 'ss':
         selection.elements.push({
           add: diff => {
-            selection.date = validateDate(selection.date.addSeconds(diff) * opt.time.seconds.interval);
+            selection.date = validateDate(selection.date.addSeconds(diff * opt.time.seconds.interval));
           },
           set: val => {
             if (val >= 60) {
               selection.value = 0;
             }
-            selection.date = validateDate(selection.date.set({second: val}));
+            selection.date = validateDate(selection.date.set({ second: val }));
           }
         });
         break;
@@ -280,7 +280,7 @@ util.inherits(Prompt, Base);
  * @return {this}
  */
 
-Prompt.prototype._run = function (cb) {
+Prompt.prototype._run = function(cb) {
   this.done = cb;
 
   // Once user confirm (enter key)
@@ -299,13 +299,13 @@ Prompt.prototype._run = function (cb) {
  * @return {Prompt} self
  */
 
-Prompt.prototype.render = function () {
+Prompt.prototype.render = function() {
   var message = this.getQuestion();
   var selection = this._selection;
 
-  _.each(this.opt.format, function (str, index) {
+  _.each(this.opt.format, function(str, index) {
     if (selection.cur === index) {
-      message += chalk.inverse(dateFormat(selection.date, str));
+      message += chalk.reset.inverse(dateFormat(selection.date, str));
     } else {
       message += dateFormat(selection.date, str);
     }
@@ -318,22 +318,31 @@ Prompt.prototype.render = function () {
 /**
  * When user press `enter` key
  */
-Prompt.prototype.onEnd = function () {
+Prompt.prototype.onEnd = function() {
+  var screen = this.screen;
+  var message = this.getQuestion();
+  var selection = this._selection;
+
   this.status = 'answered';
-  this.render();
-  this.screen.done();
+
+  _.each(this.opt.format, function(str) {
+    message += chalk.reset.cyan(dateFormat(selection.date, str));
+  });
+
+  screen.render(message);
+  screen.done();
   cliCursor.show();
-  this.done(this._selection.date);
+  this.done(selection.date);
 };
 
 /**
  * When user press a key
  */
 
-Prompt.prototype.onKeypress = function (e) {
+Prompt.prototype.onKeypress = function(e) {
   var res;
   var selection = this._selection;
-  var isSelectable = function (obj) {
+  var isSelectable = function(obj) {
     return obj !== null;
   };
 
