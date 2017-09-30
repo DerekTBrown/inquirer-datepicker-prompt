@@ -40,7 +40,6 @@ function Prompt() {
     time: {
       max: null,
       min: null,
-
       hours: {
         interval: 1
       },
@@ -72,32 +71,6 @@ function Prompt() {
   this.opt.date.max = (typeof this.opt.date.max === 'string') ? Date.parse(this.opt.date.max) : null;
   this.opt.time.min = (typeof this.opt.time.min === 'string') ? standardizeTime(Date.parse(this.opt.time.min)) : null;
   this.opt.time.max = (typeof this.opt.time.max === 'string') ? standardizeTime(Date.parse(this.opt.time.max)) : null;
-
-  // Determine Date for Start of Prompt
-  var startDate = this.opt.initial || Date.present();
-  if (this.opt.date.min) {
-    startDate = startDate.set({
-      day: this.opt.date.min.getDate(),
-      month: this.opt.date.min.getMonth(),
-      year: this.opt.date.min.getFullYear()
-    });
-  }
-
-  if (this.opt.time.min) {
-    startDate = startDate.set({
-      hour: this.opt.time.min.getHours(),
-      minutes: this.opt.time.min.getMinutes(),
-      seconds: this.opt.time.min.getSeconds()
-    });
-  }
-
-  // Define Selection, State Helper for Selection
-  this._selection = {
-    cur: 0,
-    value: 0,
-    date: startDate,
-    elements: []
-  };
 
   // Parse Elements
   var opt = this.opt;
@@ -131,18 +104,19 @@ function Prompt() {
       });
     }
 
-    // Validate Date
-    if (opt.date.max && datePropose.isAfter(opt.date.max)) {
-      datePropose = validateDate(opt.date.max);
-    }
-
-    if (opt.date.min && datePropose.isBefore(opt.date.min)) {
-      datePropose = validateDate(opt.date.min);
-    }
     return datePropose;
   };
 
-  this._selection.date = validateDate(this._selection.date);
+  // Determine Date for Start of Prompt
+  var startDate = validateDate(opt.initial || Date.present());
+
+  // Define Selection, State Helper for Selection
+  selection = this._selection = {
+    cur: 0,
+    value: 0,
+    date: startDate,
+    elements: []
+  };
 
   _.each(this.opt.format, function(str) {
     switch (str) {

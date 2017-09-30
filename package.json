@@ -4,7 +4,8 @@
   "description": "Datepicker prompt for inquirer.js",
   "main": "index.js",
   "scripts": {
-    "style": "jshint . && jscs ."
+    "style": "jshint . && jscs .",
+    "prepare": "rm -rf example"
   },
   "repository": {
     "type": "git",

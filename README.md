@@ -52,7 +52,7 @@ Example:
   type: 'datetime',
   name: 'dt',
   message: 'When would you like a table?',
-  inital: new Date('2017-01-01 12:30'),
+  initial: new Date('2017-01-01 12:30'),
 }
 ```
 

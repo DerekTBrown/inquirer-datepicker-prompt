@@ -16,8 +16,10 @@ var questions = [
     type: 'datetime',
     name: 'dt',
     message: 'When would you like a table?',
+    initial: Date.parse('01/03/2017'),
     date: {
-      min: '1/1/2000'
+      min: "1/1/2017",
+      max: "3/1/2017"
     },
     time: {
       min: '5:00 PM',
