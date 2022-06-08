@@ -22,7 +22,8 @@ Inherited from inquirer, message to be displayed while retrieving response.
 __format__
 
 An array of format specifiers for printing the date to the console.  Uses
-the [dateformat](https://www.npmjs.com/package/dateformat) mask options.
+a subset of the [dateformat](https://www.npmjs.com/package/dateformat) mask options.
+
 For example:
 
 ```Javascript
@@ -42,6 +43,16 @@ For example:
   format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT']
 }
 ```
+
+Supported options:
+* `d/dd/ddd/dddd`
+* `m/mm/mmm/mmmm`
+* `yy/yyyy`
+* `h/hh/H/HH`
+* `M/MM`
+* `s/ss`
+* `t/tt/T/TT`
+
 
 __initial__
 
