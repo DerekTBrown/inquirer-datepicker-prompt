@@ -82,6 +82,14 @@ function Prompt() {
 
   var validateDate = function(datePropose) {
     datePropose = datePropose.clone();
+    
+    if (opt.date.max && datePropose > opt.date.max) {
+      datePropose = validateDate(opt.date.max);
+    }
+
+    if (opt.date.min && datePropose < opt.date.min) {
+      datePropose = validateDate(opt.date.min);
+    }
 
     // Validate Time
     if (opt.time.max && standardizeTime(datePropose) > opt.time.max) {
