@@ -314,7 +314,11 @@ Prompt.prototype.onEnd = function() {
   screen.render(message);
   screen.done();
   cliCursor.show();
-  this.done(selection.date);
+  var result = selection.date;
+  if(this.opt.filter){
+    result = this.opt.filter(result);
+  }
+  this.done(result);
 };
 
 /**

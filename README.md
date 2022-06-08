@@ -110,3 +110,23 @@ These specify the allowed interval (modulo).  For instance:
   }
 }
 ```
+
+__filter__
+
+Specify a callback to alter the returned value:
+```Javascript
+
+{
+  type: 'datetime',
+  name: 'dt',
+  message: 'When would you like a table?',
+  time: {
+    minutes: {
+      interval: 15
+    }
+  },
+  filter: (dt) => {
+    return dt;
+  }
+}
+```

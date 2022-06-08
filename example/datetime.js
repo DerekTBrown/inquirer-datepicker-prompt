@@ -27,7 +27,7 @@ var questions = [
       minutes: {
         interval: 15
       }
-    }
+    },
   }
 ];
 
